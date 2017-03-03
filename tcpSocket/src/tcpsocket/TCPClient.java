@@ -12,10 +12,11 @@ package tcpsocket;
 import java.io.*;
 import java.net.*;
 
-class TCPClient
+public class TCPClient
 {
- public static void main(String argv[]) throws Exception
+ public TCPClient() throws Exception
  {
+     System.out.println("Cliente");
   String sentence;
   String modifiedSentence;
   BufferedReader inFromUser = new BufferedReader( new InputStreamReader(System.in));
