@@ -20,10 +20,10 @@ public class TcpSocket {
      */
     public static void main(String[] args) throws Exception {
         // TODO code application logic here
-        
+        MainWindow v=new MainWindow();
+        v.setVisible(true);
         //TCPServer server = new TCPServer();
-        TCPClient client = new TCPClient();
-        
+        TCPClient client = new TCPClient("localhost", 6789);        
     }
     
 }
