@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  * @author inaki
  */
 public class HiloRecepcion extends Thread {
-//ya no se usa
+
 //http://www.chuidiang.com/java/hilos/hilos_java.php
     private Socket clientSocket;
 
@@ -25,24 +25,25 @@ public class HiloRecepcion extends Thread {
     public void run() {
         if (clientSocket != null) {
             while (true) {
+                String modifiedSentence = "";
+                BufferedReader inFromServer = null;
                 try {
-                    String modifiedSentence = "";
-                    if (clientSocket.getInputStream() != null) {
-                        BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-                        modifiedSentence = inFromServer.readLine();
-                        System.out.println("FROM SERVER: " + modifiedSentence);
-                        inFromServer.close();
-                    }
+                   inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 } catch (IOException ex) {
-                    Logger.getLogger(HiloRecepcion.class.getName()).log(Level.SEVERE, null, ex);
+                    System.out.println("Excepción IO en hilo recepción");
                 }
+                try {
+                    modifiedSentence = inFromServer.readLine();
+                } catch (IOException ex) {
+                    System.out.println("Excepción IO en hilo recepción");
+                }
+                System.out.println("FROM SERVER: " + modifiedSentence);
             }
         } else {
             //TODO mostrar en la textbox que no tenemos socket
         }
     }
 //TODO detener hilo
-
     public void setClientSocket(Socket clientSocket) {
         this.clientSocket = clientSocket;
     }
