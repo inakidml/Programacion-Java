@@ -10,23 +10,33 @@ package tcpsocket;
  * @author txiki
  */
 public class TcpSocket {
-    
-    
+
 //https://systembash.com/a-simple-java-tcp-server-and-tcp-client/
-    
-    
+    private static String ip;
+    private static int port;
+    private static Boolean ipSeleccionada = false;
+
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) throws Exception {
         // TODO code application logic here
-        MainWindow v=new MainWindow();
+        Window v = new Window();
         v.setVisible(true);
-        //TCPServer server = new TCPServer();
+
         while (true) {
-            TCPClient client = new TCPClient("www.inaki.bid", 80);    
+            if (ipSeleccionada) {
+                TCPClient client = new TCPClient(ip, port);
+            }
         }
-       
+
+        //TCPServer server = new TCPServer();
     }
-    
+
+    public static void setIp(String ip, int port) {
+
+        TcpSocket.ip = ip;
+        TcpSocket.port = port;
+        TcpSocket.ipSeleccionada = true;
+    }
 }
