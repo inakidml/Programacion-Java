@@ -24,17 +24,21 @@ public class HiloRecepcion extends Thread {
     @Override
     public void run() {
         if (clientSocket != null) {
-            while (true) {
+            while (clientSocket != null) {
+                try {
+                    Thread.sleep(50);
+                } catch (InterruptedException ex) {
+                  
+                }
                 try {
                     String modifiedSentence = "";
                     if (clientSocket.getInputStream() != null) {
                         BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                         while((modifiedSentence = inFromServer.readLine()) != null){
                         //modifiedSentence = inFromServer.readLine();
-                        System.out.println("FROM SERVER: " + modifiedSentence);
+                        TcpSocket.setRespuesta("FROM SERVER: " + modifiedSentence + "\n");
                         }
-                        
-                        
+                                             
                         //inFromServer.close();
                     }
                 } catch (IOException ex) {

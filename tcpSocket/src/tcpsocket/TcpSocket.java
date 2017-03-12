@@ -18,12 +18,19 @@ public class TcpSocket {
     private static int port;
     private static Boolean ipSeleccionada = false;
     private static TCPClient client;
+    private static String respuesta;
+    private static Window v;
+
+    public static void setRespuesta(String respuesta) {
+        TcpSocket.respuesta = respuesta;
+        v.actualizarRespuesta(respuesta);
+    }
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) throws Exception {
         // TODO code application logic here
-        Window v = new Window();
+        v = new Window();
         v.setVisible(true);
 
 
