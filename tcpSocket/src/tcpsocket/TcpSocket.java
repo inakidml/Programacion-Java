@@ -5,6 +5,8 @@
  */
 package tcpsocket;
 
+import java.io.IOException;
+
 /**
  *
  * @author txiki
@@ -15,7 +17,7 @@ public class TcpSocket {
     private static String ip;
     private static int port;
     private static Boolean ipSeleccionada = false;
-
+    private static TCPClient client;
     /**
      * @param args the command line arguments
      */
@@ -24,19 +26,27 @@ public class TcpSocket {
         Window v = new Window();
         v.setVisible(true);
 
-        while (true) {
-            if (ipSeleccionada) {
-                TCPClient client = new TCPClient(ip, port);
-            }
-        }
+
+        
 
         //TCPServer server = new TCPServer();
     }
 
-    public static void setIp(String ip, int port) {
+    public static void setIp(String ip, int port) throws Exception {
 
         TcpSocket.ip = ip;
         TcpSocket.port = port;
         TcpSocket.ipSeleccionada = true;
+        System.out.println("setIp ejecutada");
+        arrancarCliente();
+    }
+    public static void arrancarCliente() throws Exception{
+                if (ipSeleccionada) {
+                client = new TCPClient(ip, port);              
+            }
+    }
+    
+    public static void enviarSentencia(String sentencia) throws IOException{
+    client.enviarSentencia(sentencia);
     }
 }

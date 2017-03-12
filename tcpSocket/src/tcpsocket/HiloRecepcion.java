@@ -29,9 +29,13 @@ public class HiloRecepcion extends Thread {
                     String modifiedSentence = "";
                     if (clientSocket.getInputStream() != null) {
                         BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-                        modifiedSentence = inFromServer.readLine();
+                        while((modifiedSentence = inFromServer.readLine()) != null){
+                        //modifiedSentence = inFromServer.readLine();
                         System.out.println("FROM SERVER: " + modifiedSentence);
-                        inFromServer.close();
+                        }
+                        
+                        
+                        //inFromServer.close();
                     }
                 } catch (IOException ex) {
                     Logger.getLogger(HiloRecepcion.class.getName()).log(Level.SEVERE, null, ex);
@@ -39,6 +43,7 @@ public class HiloRecepcion extends Thread {
             }
         } else {
             //TODO mostrar en la textbox que no tenemos socket
+            System.out.println("no hay socket");
         }
     }
 //TODO detener hilo

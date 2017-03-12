@@ -5,6 +5,10 @@
  */
 package tcpsocket;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author inaki
@@ -67,6 +71,11 @@ public class Window extends javax.swing.JFrame {
         jLabel4.setText("Terminal");
 
         jButtonSend.setText("Send");
+        jButtonSend.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSendActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -125,9 +134,25 @@ public class Window extends javax.swing.JFrame {
     private void jButtonSetIpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSetIpActionPerformed
         // TODO add your handling code here:
         if (jTextFieldIp.getText() != "" && jTextFieldPort.getText() != "") {
-            TcpSocket.setIp(jTextFieldIp.getText(), Integer.parseInt(jTextFieldPort.getText()));
+            try {
+                TcpSocket.setIp(jTextFieldIp.getText(), Integer.parseInt(jTextFieldPort.getText()));
+            } catch (Exception ex) {
+                
+            }
+            System.out.println("ip asignada");
         }
     }//GEN-LAST:event_jButtonSetIpActionPerformed
+
+    private void jButtonSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSendActionPerformed
+      if(jTextFieldEnv.getText()!=null){
+          try {
+              TcpSocket.enviarSentencia(jTextFieldEnv.getText());
+          } catch (IOException ex) {
+            
+          }
+       
+      }
+    }//GEN-LAST:event_jButtonSendActionPerformed
 
     /**
      * @param args the command line arguments
