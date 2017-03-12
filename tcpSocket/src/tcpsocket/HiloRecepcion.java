@@ -20,11 +20,12 @@ public class HiloRecepcion extends Thread {
 //ya no se usa
 //http://www.chuidiang.com/java/hilos/hilos_java.php
     private Socket clientSocket;
+    private boolean continuar = true;
 
     @Override
     public void run() {
         if (clientSocket != null) {
-            while (clientSocket != null) {
+            while (clientSocket != null && continuar) {
                 try {
                     Thread.sleep(50);
                 } catch (InterruptedException ex) {
@@ -54,6 +55,10 @@ public class HiloRecepcion extends Thread {
 
     public void setClientSocket(Socket clientSocket) {
         this.clientSocket = clientSocket;
+    }
+    
+    public void detenerHilo(){
+        continuar = false;
     }
 
 }
