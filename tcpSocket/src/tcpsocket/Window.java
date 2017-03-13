@@ -6,8 +6,6 @@
 package tcpsocket;
 
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -157,9 +155,10 @@ public class Window extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSetIpActionPerformed
 
     private void jButtonSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSendActionPerformed
-      if(jTextFieldEnv.getText()!=null){
+      if(jTextFieldEnv.getText()!=null && TcpSocket.getIpSeleccionada()){
           try {
               TcpSocket.enviarSentencia(jTextFieldEnv.getText());
+              jTextFieldEnv.setText("");
           } catch (IOException ex) {
             
           }

@@ -17,6 +17,10 @@ public class TcpSocket {
     private static String ip;
     private static int port;
     private static Boolean ipSeleccionada = false;
+
+    public static Boolean getIpSeleccionada() {
+        return ipSeleccionada;
+    }
     private static TCPClient client;
     private static String respuesta;
     private static Window v;
