@@ -42,6 +42,7 @@ public class Window extends javax.swing.JFrame {
         jTextFieldEnv = new javax.swing.JTextField();
         jButtonSend = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jCheckBoxConnect = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,6 +66,7 @@ public class Window extends javax.swing.JFrame {
         jTextAreaRec.setEditable(false);
         jTextAreaRec.setColumns(20);
         jTextAreaRec.setRows(5);
+        jTextAreaRec.setEnabled(false);
         jScrollPane1.setViewportView(jTextAreaRec);
 
         jLabel4.setText("Terminal");
@@ -77,6 +79,8 @@ public class Window extends javax.swing.JFrame {
         });
 
         jButton1.setText("Close Socket");
+
+        jCheckBoxConnect.setText("Conneccted");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -104,7 +108,10 @@ public class Window extends javax.swing.JFrame {
                                     .addComponent(jTextFieldIp, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel3)
                                     .addComponent(jTextFieldPort, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jCheckBoxConnect)))
                                 .addGap(0, 671, Short.MAX_VALUE))
                             .addComponent(jTextFieldEnv))
                         .addContainerGap())))
@@ -123,13 +130,16 @@ public class Window extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldPort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonSetIp)
-                    .addComponent(jButton1))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel4)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jTextFieldPort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonSetIp)
+                            .addComponent(jButton1))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel4))
+                    .addComponent(jCheckBoxConnect))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -205,11 +215,15 @@ public class Window extends javax.swing.JFrame {
     jTextAreaRec.setText( jTextAreaRec.getText() + respuesta);
     
     }
+    public void modificarConexion(Boolean conectado){
+      jCheckBoxConnect.setSelected(conectado);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonSend;
     private javax.swing.JButton jButtonSetIp;
+    private javax.swing.JCheckBox jCheckBoxConnect;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

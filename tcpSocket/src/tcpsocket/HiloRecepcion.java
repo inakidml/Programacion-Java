@@ -36,7 +36,7 @@ public class HiloRecepcion extends Thread {
                         BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                         while ((modifiedSentence = inFromServer.readLine()) != null) {
                             //modifiedSentence = inFromServer.readLine();
-                            TcpSocket.setRespuesta("FROM SERVER: " + modifiedSentence + "\n");
+                            TcpSocket.setRespuesta(modifiedSentence + "\n");
                         }
 
                         //inFromServer.close();
@@ -45,6 +45,7 @@ public class HiloRecepcion extends Thread {
 
                 }
             }
+            TcpSocket.setConnected(false);
         } else {
             //TODO mostrar en la textbox que no tenemos socket
             System.out.println("no hay socket");
@@ -57,6 +58,7 @@ public class HiloRecepcion extends Thread {
     }
 
     public void detenerHilo() {
+         TcpSocket.setConnected(false);
         continuar = false;
     }
 

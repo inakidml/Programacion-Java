@@ -19,6 +19,8 @@ public class TCPClient {
     public TCPClient(String ip, int puerto) throws Exception {
         System.out.println("Cliente");
         clientSocket = new Socket(ip, puerto);
+        //TODO comprobar la conexión
+        TcpSocket.setConnected(true);
         //Instanciamos un hilo
         HiloRecepcion hiloRx = new HiloRecepcion();
         //pasamos la referencia del socket

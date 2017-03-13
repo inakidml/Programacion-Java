@@ -17,6 +17,7 @@ public class TcpSocket {
     private static String ip;
     private static int port;
     private static Boolean ipSeleccionada = false;
+    private static Boolean conectado = false;
 
     public static Boolean getIpSeleccionada() {
         return ipSeleccionada;
@@ -29,6 +30,7 @@ public class TcpSocket {
         TcpSocket.respuesta = respuesta;
         v.actualizarRespuesta(respuesta);
     }
+
     /**
      * @param args the command line arguments
      */
@@ -36,9 +38,6 @@ public class TcpSocket {
         // TODO code application logic here
         v = new Window();
         v.setVisible(true);
-
-
-        
 
         //TCPServer server = new TCPServer();
     }
@@ -51,13 +50,17 @@ public class TcpSocket {
         System.out.println("setIp ejecutada");
         arrancarCliente();
     }
-    public static void arrancarCliente() throws Exception{
-                if (ipSeleccionada) {
-                client = new TCPClient(ip, port);              
-            }
+
+    public static void arrancarCliente() throws Exception {
+        if (ipSeleccionada) {
+            client = new TCPClient(ip, port);
+        }
     }
-    
-    public static void enviarSentencia(String sentencia) throws IOException{
-    client.enviarSentencia(sentencia);
+
+    public static void enviarSentencia(String sentencia) throws IOException {
+        client.enviarSentencia(sentencia);
+    }
+    public static void setConnected(Boolean conectado){
+    v.modificarConexion(conectado);
     }
 }
